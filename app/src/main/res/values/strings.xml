@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">ES News APP</string>
+    <string name="news_api_key">dd06d51c5f4745369fb660e720b99c00</string>
+
+    <string name="news_source_activity_title">Select Source</string>
+    <string name="news_list_activity_default_title">News List</string>
+    <string name="news_list_activity_formatted_title">News from "%1$s"</string>
+    <string name="article_detail_activity_title">Read Articles</string>
+
+    <string name="source_name">source_name</string>
+    <string name="source_description">source_description</string>
+
+    <string name="headline_error_message">headline_error_message</string>
+    <string name="headline_error_message_detault">Something Went Wrong When fetching headline news</string>
+    <string name="headline_error_message_more_data">Unable to load more data</string>
+    <string name="headline_info_message_load_more_data">Load more…</string>
+    <string name="headline_source">Headline</string>
+    <string name="headline_title">headline_title</string>
+    <string name="headline_image">headline_image</string>
+
+    <string name="other_error_message">other_error_message</string>
+    <string name="other_error_message_detault">Something Went Wrong When fetching other news</string>
+    <string name="other_news_title">other_news_title</string>
+    <string name="other_news_timestamp">other_news_timestamp</string>
+
+    <string name="api_sponsor_footer_message">Powered By newsapi.org</string>
+</resources>

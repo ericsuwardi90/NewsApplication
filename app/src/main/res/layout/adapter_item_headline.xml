@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/headline_cardview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="2dp"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp">
+
+    <ImageView
+        android:id="@+id/headline_image"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/headline_image"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/headline_source"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:minLines="1"
+            android:text="@string/headline_source"
+            android:textSize="@dimen/text_size_large"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/headline_title"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:minLines="1"
+            android:maxLines="2"
+            android:background="@color/black"
+            android:text="@string/headline_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_larger"/>
+
+    </LinearLayout>
+
+</FrameLayout>
+

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ericsuwardi.newsapplication.view.activity.NewsListActivity">
+
+    <LinearLayout
+        android:layout_height="180dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/headline_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+
+        <ProgressBar
+            android:id="@+id/headline_progressbar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/headline_error_message"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/headline_error_message"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/other_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:visibility="gone"/>
+
+        <ProgressBar
+            android:id="@+id/other_progressbar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/other_error_message"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/other_error_message"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+</LinearLayout>

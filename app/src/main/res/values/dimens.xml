@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Padding dimension -->
+    <dimen name="padding_none">0dp</dimen>
+    <dimen name="padding_smallest">2dp</dimen>
+    <dimen name="padding_small">6dp</dimen>
+    <dimen name="padding_standard">8dp</dimen>
+    <dimen name="padding_standard_half">4dp</dimen>
+    <dimen name="padding_medium">10dp</dimen>
+    <dimen name="padding_large">15dp</dimen>
+    <dimen name="padding_larger">16dp</dimen>
+    <dimen name="padding_largest">20dp</dimen>
+    <dimen name="padding_extra_largest">32dp</dimen>
+    <dimen name="padding_between_control">24dp</dimen>
+    <dimen name="padding_btn_drawable">30dp</dimen>
+    <dimen name="padding_between_input">30dp</dimen>
+    <dimen name="padding_large_between_input">40dp</dimen>
+    <dimen name="padding_rating_between_control">33dp</dimen>
+    <dimen name="padding_left_menu_name">72dp</dimen>
+
+    <!-- Text size dimension -->
+    <dimen name="text_size_smallest">8sp</dimen>
+    <dimen name="text_size_small">10sp</dimen>
+    <dimen name="text_size_medium">12sp</dimen>
+    <dimen name="text_size_standard">14sp</dimen>
+    <dimen name="text_size_large">16sp</dimen>
+    <dimen name="text_size_extra_larger">16sp</dimen>
+    <dimen name="text_size_larger">20sp</dimen>
+    <dimen name="text_size_largest">24sp</dimen>
+
+</resources>
