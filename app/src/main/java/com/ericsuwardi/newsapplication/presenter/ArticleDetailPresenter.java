@@ -8,7 +8,7 @@ import com.ericsuwardi.newsapplication.view.iview.IArticleDetailView;
  * Created by ericsuwardi on 12/1/17.
  */
 
-public class ArticleDetailPresenter {
+public class ArticleDetailPresenter extends BasePresenter{
 
     private IArticleDetailView view;
     private Context context;

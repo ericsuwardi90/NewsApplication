@@ -15,7 +15,7 @@ import retrofit2.Response;
  * Created by ericsuwardi on 11/30/17.
  */
 
-public class SplashPresenter {
+public class SplashPresenter extends BasePresenter{
 
     private ISplashView view;
     private Context context;

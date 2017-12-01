@@ -1,10 +1,11 @@
 package com.ericsuwardi.newsapplication.view.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -17,12 +18,13 @@ import com.ericsuwardi.newsapplication.helper.StringHelper;
 import com.ericsuwardi.newsapplication.model.Article;
 import com.ericsuwardi.newsapplication.presenter.NewsListPresenter;
 import com.ericsuwardi.newsapplication.view.iview.INewsListView;
+import com.joanzapata.iconify.widget.IconTextView;
 
 /**
  * Created by ericsuwardi on 11/30/17.
  */
 
-public class NewsListActivity extends AppCompatActivity implements INewsListView{
+public class NewsListActivity extends BaseActivity implements INewsListView, View.OnClickListener{
 
     NewsListPresenter presenter;
 
@@ -32,6 +34,8 @@ public class NewsListActivity extends AppCompatActivity implements INewsListView
     ProgressBar otherNewsProgressBar;
     TextView headlineErrorTextView;
     TextView otherNewsErrorTextView;
+    TextView actionBarTitle;
+    IconTextView searchIcon;
 
     LinearLayoutManager othersLlm;
 
@@ -39,9 +43,6 @@ public class NewsListActivity extends AppCompatActivity implements INewsListView
     OtherNewsAdapter otherNewsAdapter;
 
     int page = 1;
-    String q = "";
-    String country = "";
-    String language = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +52,25 @@ public class NewsListActivity extends AppCompatActivity implements INewsListView
         final String source_name = getIntent().getExtras().getString("source_name","");
 
         setContentView(R.layout.activity_news_list);
-        setTitle(StringHelper.isNullOrEmpty(source_name) ?
+
+        if(getSupportActionBar()!= null){
+
+            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            getSupportActionBar().setCustomView(LayoutInflater.from(this).inflate(R.layout.toolbar_with_search, null), new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT));
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            getSupportActionBar().setTitle(StringHelper.isNullOrEmpty(source_name) ?
                 getString(R.string.news_list_activity_default_title) :
-                String.format(getString(R.string.news_list_activity_formatted_title), source_name));
+                String.format(getString(R.string.news_list_activity_formatted_title), source_name)
+            );
+            actionBarTitle = getSupportActionBar().getCustomView().findViewById(R.id.action_bar_title);
+            searchIcon = getSupportActionBar().getCustomView().findViewById(R.id.search_icon);
+
+            searchIcon.setOnClickListener(this);
+            actionBarTitle.setText(StringHelper.isNullOrEmpty(source_name) ?
+                    getString(R.string.news_list_activity_default_title) :
+                    String.format(getString(R.string.news_list_activity_formatted_title), source_name));
+        }
 
         headlineRecyclerView = (RecyclerView) findViewById(R.id.headline_recyclerview);
         otherNewsRecyclerView = (RecyclerView) findViewById(R.id.other_recyclerview);
@@ -104,11 +121,13 @@ public class NewsListActivity extends AppCompatActivity implements INewsListView
     @Override
     public void onLoadHeadlines() {
         headlineProgressBar.setVisibility(View.VISIBLE);
+        headlineErrorTextView.setVisibility(View.GONE);
     }
 
     @Override
     public void onLoadFirstOtherNews() {
         otherNewsProgressBar.setVisibility(View.VISIBLE);
+        otherNewsErrorTextView.setVisibility(View.GONE);
     }
 
     @Override
@@ -179,5 +198,21 @@ public class NewsListActivity extends AppCompatActivity implements INewsListView
         bundle.putString("url", article.getUrl());
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    @Override
+    public void openSearchActivity() {
+
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        if(view.getId() == R.id.search_icon){
+            presenter.openSearchPage();
+        }
+
     }
 }

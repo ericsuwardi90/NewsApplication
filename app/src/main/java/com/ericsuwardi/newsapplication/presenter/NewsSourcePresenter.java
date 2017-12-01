@@ -14,7 +14,7 @@ import org.greenrobot.eventbus.ThreadMode;
  * Created by ericsuwardi on 11/30/17.
  */
 
-public class NewsSourcePresenter {
+public class NewsSourcePresenter extends BasePresenter{
 
     private INewsSourceView view;
     private Context context;

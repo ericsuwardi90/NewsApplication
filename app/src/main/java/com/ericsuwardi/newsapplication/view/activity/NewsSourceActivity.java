@@ -12,7 +12,7 @@ import com.ericsuwardi.newsapplication.model.Source;
 import com.ericsuwardi.newsapplication.presenter.NewsSourcePresenter;
 import com.ericsuwardi.newsapplication.view.iview.INewsSourceView;
 
-public class NewsSourceActivity extends AppCompatActivity implements INewsSourceView {
+public class NewsSourceActivity extends BaseActivity implements INewsSourceView {
 
     NewsSourcePresenter presenter;
     RecyclerView recyclerView;

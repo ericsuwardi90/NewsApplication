@@ -16,7 +16,7 @@ import retrofit2.Response;
  * Created by ericsuwardi on 11/30/17.
  */
 
-public class NewsListPresenter {
+public class NewsListPresenter extends BasePresenter{
 
     private INewsListView view;
     private Context context;
@@ -29,6 +29,8 @@ public class NewsListPresenter {
     public void openNewsPage(Article article){
         view.openNewsActivity(article);
     }
+
+    public void openSearchPage(){view.openSearchActivity();}
 
     public void onGetHeadlineNewsApi(String sourceId){
         view.onLoadHeadlines();
@@ -100,7 +102,6 @@ public class NewsListPresenter {
 
                     }
                 });
-
 
     }
 }

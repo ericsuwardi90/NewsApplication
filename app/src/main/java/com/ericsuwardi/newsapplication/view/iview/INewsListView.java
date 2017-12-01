@@ -26,5 +26,6 @@ public interface INewsListView {
     void successGetAdditionalOtherNews(Article[] articles);
 
     void openNewsActivity(Article article);
+    void openSearchActivity();
 
 }

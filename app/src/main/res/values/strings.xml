@@ -23,5 +23,8 @@
     <string name="other_news_title">other_news_title</string>
     <string name="other_news_timestamp">other_news_timestamp</string>
 
+    <string name="search_icon">{fa-search}</string>
+    <string name="action_bar_title">action_bar_title</string>
+
     <string name="api_sponsor_footer_message">Powered By newsapi.org</string>
 </resources>
