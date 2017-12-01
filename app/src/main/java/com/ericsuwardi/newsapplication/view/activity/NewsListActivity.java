@@ -44,12 +44,15 @@ public class NewsListActivity extends BaseActivity implements INewsListView, Vie
 
     int page = 1;
 
+    String source_id;
+    String source_name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final String source_id = getIntent().getExtras().getString("source_id","");
-        final String source_name = getIntent().getExtras().getString("source_name","");
+        source_id = getIntent().getExtras().getString("source_id","");
+        source_name = getIntent().getExtras().getString("source_name","");
 
         setContentView(R.layout.activity_news_list);
 
@@ -204,6 +207,10 @@ public class NewsListActivity extends BaseActivity implements INewsListView, Vie
     public void openSearchActivity() {
 
         Intent intent = new Intent(this, SearchActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("source_id", source_id);
+        bundle.putString("source_name", source_name);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
