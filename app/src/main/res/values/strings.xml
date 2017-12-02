@@ -6,6 +6,8 @@
     <string name="news_list_activity_default_title">News List</string>
     <string name="news_list_activity_formatted_title">News from "%1$s"</string>
     <string name="article_detail_activity_title">Read Articles</string>
+    <string name="search_activity_default_title">Search News</string>
+    <string name="search_activity_formatted_title">Search from "%1$s"</string>
 
     <string name="source_name">source_name</string>
     <string name="source_description">source_description</string>
@@ -24,6 +26,27 @@
     <string name="other_news_timestamp">other_news_timestamp</string>
 
     <string name="search_icon">{fa-search}</string>
+    <string name="search_icon_loading">{fa-spinner spin}</string>
+    <string name="search_query">Search</string>
+    <string name="search_error_message_detault">Something Went Wrong When fetching headline news</string>
+    <string name="search_error_message_more_data">Unable to load more data</string>
+    <string name="sort_by_spinner_label">Sort By</string>
+    <string name="search_advance_button_idle">SEARCH</string>
+    <string name="search_advance_button_loading">SEARCHING {fa-spinner spin}</string>
+    <string name="toggle_button">ADDITIONAL FILTER {fa-plus-square}</string>
+
+    <string-array name="sort_by_spinner_array">
+        <item>@string/sort_by_spinner_array_option1</item>
+        <item>@string/sort_by_spinner_array_option2</item>
+        <item>@string/sort_by_spinner_array_option3</item>
+    </string-array>
+    <string name="sort_by_spinner_array_option1">publishedAt</string>
+    <string name="sort_by_spinner_array_option2">popularity</string>
+    <string name="sort_by_spinner_array_option3">relevancy</string>
+
+
+
+
     <string name="action_bar_title">action_bar_title</string>
 
     <string name="api_sponsor_footer_message">Powered By newsapi.org</string>

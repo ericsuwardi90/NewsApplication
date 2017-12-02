@@ -12,21 +12,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/padding_medium"
-        app:layout_collapseMode="parallax">
+
+        android:paddingRight="@dimen/padding_medium"
+        android:paddingEnd="@dimen/padding_medium"
+        android:paddingLeft="@dimen/padding_medium"
+        android:paddingStart="@dimen/padding_medium">
 
         <EditText
             android:id="@+id/search_query"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Search"
-            android:textColor="@color/gray"/>
+            android:hint="@string/search_query"
+            android:textColor="@color/gray" />
 
         <com.joanzapata.iconify.widget.IconTextView
             android:id="@+id/search_icon_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="2dp"
             android:minHeight="1dp"
             android:minWidth="1dp"
             android:text="@string/search_icon"
@@ -35,10 +39,104 @@
 
     </LinearLayout>
 
+    <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+        android:id="@+id/expandableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ael_expanded="false"
+        app:ael_duration="300"
+        app:ael_defaultPosition="0dp"
+        app:ael_interpolator="fastOutSlowIn"
+        app:ael_orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingRight="@dimen/padding_medium"
+            android:paddingEnd="@dimen/padding_medium"
+            android:paddingLeft="@dimen/padding_medium"
+            android:paddingStart="@dimen/padding_medium"
+            android:paddingBottom="@dimen/padding_smallest">
+
+            <!-- sort by -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:text="@string/sort_by_spinner_label"
+                    android:textSize="@dimen/text_size_large" />
+
+                <Spinner
+                    android:id="@+id/sort_by_spinner"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:prompt="@string/sort_by_spinner_array_option1"
+                    android:textSize="@dimen/text_size_large" />
+
+            </LinearLayout>
+
+            <!-- date picker -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:text="From"
+                    android:textSize="@dimen/text_size_large" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:text="To"
+                    android:textSize="@dimen/text_size_large" />
+
+            </LinearLayout>
+
+            <!-- Submit button-->
+            <com.joanzapata.iconify.widget.IconButton
+                android:id="@+id/search_advance_button"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:padding="12dp"
+                android:minHeight="1dp"
+                android:layout_gravity="center"
+                android:text="@string/search_advance_button_idle"
+                android:textSize="@dimen/text_size_medium"/>
+        </LinearLayout>
+
+    </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+
+    <com.joanzapata.iconify.widget.IconButton
+        android:id="@+id/toggle_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginBottom="4dp"
+        android:minHeight="1dp"
+        android:text="@string/toggle_button"
+        android:textSize="@dimen/text_size_medium"/>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"

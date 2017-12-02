@@ -50,6 +50,10 @@ dependencies {
     compile 'com.android.support:design:26.0.0-alpha1'
 
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.github.aakira:expandable-layout:1.6.0@aar'
+    compile ('com.wdullaer:materialdatetimepicker:3.4.0') {
+        exclude group: 'com.android.support'
+    }
 
     compile 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
     compile 'com.jakewharton:butterknife:6.1.0'
