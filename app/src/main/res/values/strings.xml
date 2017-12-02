@@ -34,6 +34,10 @@
     <string name="search_advance_button_idle">SEARCH</string>
     <string name="search_advance_button_loading">SEARCHING {fa-spinner spin}</string>
     <string name="toggle_button">ADDITIONAL FILTER {fa-plus-square}</string>
+    <string name="search_from_datepicker_text">search_from_datepicker_text</string>
+    <string name="search_from_datepicker_label_text">From</string>
+    <string name="search_to_datepicker_text">search_to_datepicker_text</string>
+    <string name="search_to_datepicker_label_text">To</string>
 
     <string-array name="sort_by_spinner_array">
         <item>@string/sort_by_spinner_array_option1</item>

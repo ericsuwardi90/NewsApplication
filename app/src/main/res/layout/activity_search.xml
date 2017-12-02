@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/search_query"
+            android:textSize="@dimen/text_size_large"
             android:textColor="@color/gray" />
 
         <com.joanzapata.iconify.widget.IconTextView
@@ -63,13 +64,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:padding="4dp"
                     android:text="@string/sort_by_spinner_label"
                     android:textSize="@dimen/text_size_large" />
@@ -79,13 +81,41 @@
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:padding="4dp"
                     android:prompt="@string/sort_by_spinner_array_option1"
+                    android:background="@drawable/gray_border_spinner"
                     android:textSize="@dimen/text_size_large" />
 
             </LinearLayout>
 
-            <!-- date picker -->
+            <!-- date picker from -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:padding="4dp"
+                    android:text="@string/search_from_datepicker_label_text"
+                    android:textSize="@dimen/text_size_large" />
+
+                <TextView
+                    android:id="@+id/search_from_datepicker_text"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:padding="12dp"
+                    android:background="@drawable/gray_border"
+                    android:text="@string/search_to_datepicker_text"
+                    android:textSize="@dimen/text_size_large" />
+
+            </LinearLayout>
+
+            <!-- date picker to -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -95,16 +125,19 @@
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
                     android:padding="4dp"
-                    android:text="From"
+                    android:text="@string/search_to_datepicker_label_text"
                     android:textSize="@dimen/text_size_large" />
 
                 <TextView
+                    android:id="@+id/search_to_datepicker_text"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:padding="4dp"
-                    android:text="To"
+                    android:padding="12dp"
+                    android:background="@drawable/gray_border"
+                    android:text="@string/search_to_datepicker_text"
                     android:textSize="@dimen/text_size_large" />
 
             </LinearLayout>

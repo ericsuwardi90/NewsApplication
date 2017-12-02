@@ -18,8 +18,8 @@ import retrofit2.Response;
 
 public class SearchPresenter extends BasePresenter{
 
-    ISearchView view;
-    Context context;
+    private ISearchView view;
+    private Context context;
 
     public SearchPresenter(ISearchView view, Context context){
         this.view = view;
@@ -28,6 +28,10 @@ public class SearchPresenter extends BasePresenter{
 
     public void openNewsPage(Article article){
         view.openNewsActivity(article);
+    }
+
+    public void showDatePicker(int resourceId){
+        view.openingDatePicker(resourceId);
     }
 
     public void getOtherNewsApi(String query, String sourceId,

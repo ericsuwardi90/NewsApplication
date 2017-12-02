@@ -26,6 +26,20 @@ public class DateTimeHelper {
         return result;
     }
 
+    public static String writeFormattedDate(String format, Date date){
+
+        String result = "";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+
+        try{
+            result = dateFormat.format(date);
+        }catch (Exception ex ){
+            ex.printStackTrace();
+        }
+
+        return result;
+    }
+
     public static String getDateTimeDifferenceStr(Date startDate, Date endDate) {
         //milliseconds
         long different = endDate.getTime() - startDate.getTime();

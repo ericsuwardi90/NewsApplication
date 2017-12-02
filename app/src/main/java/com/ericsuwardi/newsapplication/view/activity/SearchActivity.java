@@ -9,11 +9,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.ericsuwardi.newsapplication.R;
 import com.ericsuwardi.newsapplication.adapter.SearchResultAdapter;
+import com.ericsuwardi.newsapplication.helper.DateTimeHelper;
 import com.ericsuwardi.newsapplication.helper.StringHelper;
 import com.ericsuwardi.newsapplication.model.Article;
 import com.ericsuwardi.newsapplication.presenter.SearchPresenter;
@@ -21,12 +22,18 @@ import com.ericsuwardi.newsapplication.view.iview.ISearchView;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.joanzapata.iconify.widget.IconButton;
 import com.joanzapata.iconify.widget.IconTextView;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-public class SearchActivity extends BaseActivity implements ISearchView, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+import java.util.Calendar;
+import java.util.Date;
+
+public class SearchActivity extends BaseActivity implements ISearchView, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener, DatePickerDialog.OnDateSetListener {
 
     SearchPresenter presenter;
     SearchResultAdapter adapter;
 
+    TextView fromDateTextView;
+    TextView toDateTextView;
     EditText searchEditText;
     IconTextView searchIcon;
     IconButton searchAdvanceButton;
@@ -69,6 +76,8 @@ public class SearchActivity extends BaseActivity implements ISearchView, View.On
         toggleButton = (IconButton) findViewById(R.id.toggle_button);
         searchAdvanceButton = (IconButton) findViewById(R.id.search_advance_button);
         sortBySpinner = (Spinner) findViewById(R.id.sort_by_spinner);
+        fromDateTextView = (TextView) findViewById(R.id.search_from_datepicker_text);
+        toDateTextView = (TextView) findViewById(R.id.search_to_datepicker_text);
 
         llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         presenter = new SearchPresenter(this, this);
@@ -109,12 +118,31 @@ public class SearchActivity extends BaseActivity implements ISearchView, View.On
                 )
         );
 
+        fromDateTextView.setText(DateTimeHelper.writeFormattedDate("yyyy-MM-dd", new Date()));
+        toDateTextView.setText(DateTimeHelper.writeFormattedDate("yyyy-MM-dd", new Date()));
+
         swipeRefreshLayout.setColorSchemeResources(R.color.red, R.color.green, R.color.yellow);
         swipeRefreshLayout.setOnRefreshListener(this);
 
         searchIcon.setOnClickListener(this);
         toggleButton.setOnClickListener(this);
         searchAdvanceButton.setOnClickListener(this);
+        fromDateTextView.setOnClickListener(this);
+        toDateTextView.setOnClickListener(this);
+    }
+
+    @Override
+    public void openingDatePicker(int resourceId) {
+        // opening date picker here
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog dpd = DatePickerDialog.newInstance(
+                SearchActivity.this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+        dpd.setVersion(DatePickerDialog.Version.VERSION_2);
+        dpd.show(getFragmentManager(), String.valueOf(resourceId));
     }
 
     @Override
@@ -173,8 +201,8 @@ public class SearchActivity extends BaseActivity implements ISearchView, View.On
                 page = 1;
                 query = StringHelper.getAppendedQuery(searchEditText.getText().toString());
                 sortBy = sortBySpinner.getSelectedItem().toString();
-                from = "";
-                to = "";
+                from = fromDateTextView.getText().toString();
+                to = toDateTextView.getText().toString();
 
                 searchAdvanceButton.setEnabled(false);
                 searchAdvanceButton.setText(getString(R.string.search_advance_button_loading));
@@ -198,6 +226,16 @@ public class SearchActivity extends BaseActivity implements ISearchView, View.On
             case R.id.toggle_button:
                 expandableLayout.toggle();
                 break;
+
+            case R.id.search_from_datepicker_text:
+                // call the picker
+                presenter.showDatePicker(R.id.search_from_datepicker_text);
+                break;
+
+            case R.id.search_to_datepicker_text:
+                // call the picker
+                presenter.showDatePicker(R.id.search_to_datepicker_text);
+                break;
         }
     }
 
@@ -205,5 +243,20 @@ public class SearchActivity extends BaseActivity implements ISearchView, View.On
     public void onRefresh() {
         page = 1;
         presenter.getOtherNewsApi(query, source_id, from, to, sortBy, language, page);
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int month, int dayOfMonth) {
+
+        month += 1;
+
+        // it's not clean solution, but given the pattern i think it is better for using this method
+        String date = year+"-"+(month >= 10 ? "" : "0" )+month+"-"+(dayOfMonth >= 10 ? "" : "0" )+dayOfMonth;
+
+        if(view.getTag().equals( String.valueOf( R.id.search_from_datepicker_text) )){
+            fromDateTextView.setText(date);
+        } else if(view.getTag().equals( String.valueOf( R.id.search_to_datepicker_text) )){
+            toDateTextView.setText(date);
+        }
     }
 }

@@ -32,7 +32,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private SearchPresenter presenter;
     private Context context;
 
-    public SearchResultAdapter(Context context, SearchPresenter presenter, Article[] articles){
+    public SearchResultAdapter(Context context, SearchPresenter presenter, Article[] articles) {
 
         this.data = new ArrayList<>();
         this.presenter = presenter;
@@ -41,13 +41,13 @@ public class SearchResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         addArticles(articles);
     }
 
-    public void addArticles(Article[] articles){
+    public void addArticles(Article[] articles) {
         Collections.addAll(data, articles);
         setLoading(false);
         notifyDataSetChanged();
     }
 
-    public void clearData(){
+    public void clearData() {
         data.clear();
         notifyDataSetChanged();
     }
@@ -78,13 +78,13 @@ public class SearchResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        if(holder != null){
+        if (holder != null) {
             OtherNewsViewHolder viewHolder = (OtherNewsViewHolder) holder;
             viewHolder.bindData(data.get(position));
         }
     }
 
-    private class OtherNewsViewHolder extends RecyclerView.ViewHolder{
+    private class OtherNewsViewHolder extends RecyclerView.ViewHolder {
 
         CardView cardView;
         TextView title;
@@ -100,11 +100,16 @@ public class SearchResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             imageView = v.findViewById(R.id.other_news_image);
         }
 
-        void bindData(final Article article){
+        void bindData(final Article article) {
 
             title.setText(article.getTitle());
             timeStamp.setText("Published ");
-            timeStamp.append( DateTimeHelper.getDateTimeDifferenceStr( DateTimeHelper.getDate("yyyy-MM-dd'T'HH:mm:ss'Z'", article.getPublishedAt() ), new Date()) );
+            timeStamp.append(
+                DateTimeHelper.writeFormattedDate(
+                        "yyyy-MM-dd",
+                        DateTimeHelper.getDate("dd-MM-yyyy'T'HH:mm:ss'Z'", article.getPublishedAt())
+                )
+            );
 
             Picasso.with(context)
                     .load(StringHelper.isNullOrEmpty(article.getUrlToImage()) ? null : article.getUrlToImage())
@@ -113,7 +118,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     .placeholder(R.color.gray)
                     .into(imageView);
 
-            cardView.setOnClickListener(new View.OnClickListener(){
+            cardView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {

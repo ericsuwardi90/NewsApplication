@@ -8,6 +8,8 @@ import com.ericsuwardi.newsapplication.model.Article;
 
 public interface ISearchView {
 
+    void openingDatePicker(int resId);
+
     void onLoadNewQuery();
     void afterCallSearchApi();
 
