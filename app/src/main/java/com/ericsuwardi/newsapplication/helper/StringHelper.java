@@ -10,5 +10,8 @@ public class StringHelper {
         return (str == null || str.trim().length() <= 0 );
     }
 
+    public static String getAppendedQuery(String query){
+        return isNullOrEmpty(query) ? "" : query.replace(" ", "+");
+    }
 
 }

@@ -8,7 +8,7 @@ import com.ericsuwardi.newsapplication.R;
 import com.ericsuwardi.newsapplication.presenter.ArticleDetailPresenter;
 import com.ericsuwardi.newsapplication.view.iview.IArticleDetailView;
 
-public class ArticleDetailActivity extends AppCompatActivity implements IArticleDetailView{
+public class ArticleDetailActivity extends BaseActivity implements IArticleDetailView{
 
     WebView webView;
     ArticleDetailPresenter presenter;
@@ -24,7 +24,12 @@ public class ArticleDetailActivity extends AppCompatActivity implements IArticle
         webView = (WebView) findViewById(R.id.web_view);
         presenter = new ArticleDetailPresenter(this, this);
 
-        webView.loadUrl(url);
+        presenter.loadWebsite(url);
 
+    }
+
+    @Override
+    public void loadWebsite(String url) {
+        webView.loadUrl(url);
     }
 }

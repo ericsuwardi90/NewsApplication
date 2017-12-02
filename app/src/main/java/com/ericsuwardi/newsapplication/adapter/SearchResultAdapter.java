@@ -47,6 +47,11 @@ public class SearchResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         notifyDataSetChanged();
     }
 
+    public void clearData(){
+        data.clear();
+        notifyDataSetChanged();
+    }
+
     public boolean isLoading() {
         return loading;
     }

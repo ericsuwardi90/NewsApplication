@@ -17,4 +17,8 @@ public class ArticleDetailPresenter extends BasePresenter{
         this.view = view;
         this.context = context;
     }
+
+    public void loadWebsite(String url){
+        view.loadWebsite(url);
+    }
 }

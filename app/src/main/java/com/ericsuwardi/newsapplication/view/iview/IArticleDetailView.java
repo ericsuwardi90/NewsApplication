@@ -5,4 +5,6 @@ package com.ericsuwardi.newsapplication.view.iview;
  */
 
 public interface IArticleDetailView {
+
+    void loadWebsite(String url);
 }

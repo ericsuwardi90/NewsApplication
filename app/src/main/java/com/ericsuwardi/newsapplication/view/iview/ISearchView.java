@@ -8,8 +8,14 @@ import com.ericsuwardi.newsapplication.model.Article;
 
 public interface ISearchView {
 
-    void getNewQuery(Article[] articles);
-    void getMoreResult(Article[] articles);
-    void openNewsActivity(Article article);
+    void onLoadNewQuery();
+    void afterCallSearchApi();
 
+    void getNewQuery(Article[] articles);
+    void getMoreResults(Article[] articles);
+
+    void failedGetNewQuery();
+    void failedGetMoreResults();
+
+    void openNewsActivity(Article article);
 }
