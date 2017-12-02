@@ -15,17 +15,19 @@ import com.ericsuwardi.newsapplication.view.iview.ISplashView;
 
 import org.greenrobot.eventbus.EventBus;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class SplashActivity extends AppCompatActivity implements ISplashView{
 
     SplashPresenter presenter;
-    ProgressBar progressBar;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        ButterKnife.bind(this);
 
         presenter = new SplashPresenter(this);
         presenter.loadSourceApi(ContextHelper.getApiKey(this));

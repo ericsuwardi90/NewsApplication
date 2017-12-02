@@ -28,24 +28,27 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import java.util.Calendar;
 import java.util.Date;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class SearchActivity extends BaseActivity implements ISearchView, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener, DatePickerDialog.OnDateSetListener {
 
     SearchPresenter presenter;
     SearchResultAdapter adapter;
 
-    TextView fromDateTextView;
-    TextView toDateTextView;
-    EditText searchEditText;
-    IconTextView searchIcon;
-    IconButton searchAdvanceButton;
-    IconButton toggleButton;
+    @BindView(R.id.search_from_datepicker_text) TextView fromDateTextView;
+    @BindView(R.id.search_to_datepicker_text)   TextView toDateTextView;
+    @BindView(R.id.search_query)                EditText searchEditText;
+    @BindView(R.id.search_icon_submit)          IconTextView searchIcon;
+    @BindView(R.id.search_advance_button)       IconButton searchAdvanceButton;
+    @BindView(R.id.toggle_button)               IconButton toggleButton;
 
-    SwipeRefreshLayout swipeRefreshLayout;
-    RecyclerView recyclerView;
-    ExpandableRelativeLayout expandableLayout;
+    @BindView(R.id.swipe_refresh_layout)    SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.recycler_view)           RecyclerView recyclerView;
+    @BindView(R.id.expandableLayout)        ExpandableRelativeLayout expandableLayout;
+    @BindView(R.id.sort_by_spinner)         Spinner sortBySpinner;
+
     LinearLayoutManager llm;
-
-    Spinner sortBySpinner;
 
     int page = 1;
     String query;
@@ -69,16 +72,7 @@ public class SearchActivity extends BaseActivity implements ISearchView, View.On
                 getString(R.string.search_activity_default_title) :
                 String.format(getString(R.string.search_activity_formatted_title), source_name));
 
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        searchEditText = (EditText) findViewById(R.id.search_query);
-        searchIcon = (IconTextView) findViewById(R.id.search_icon_submit);
-        expandableLayout = (ExpandableRelativeLayout) findViewById(R.id.expandableLayout);
-        toggleButton = (IconButton) findViewById(R.id.toggle_button);
-        searchAdvanceButton = (IconButton) findViewById(R.id.search_advance_button);
-        sortBySpinner = (Spinner) findViewById(R.id.sort_by_spinner);
-        fromDateTextView = (TextView) findViewById(R.id.search_from_datepicker_text);
-        toDateTextView = (TextView) findViewById(R.id.search_to_datepicker_text);
+        ButterKnife.bind(this);
 
         llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         presenter = new SearchPresenter(this);

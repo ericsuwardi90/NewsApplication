@@ -21,6 +21,9 @@ import com.ericsuwardi.newsapplication.presenter.NewsListPresenter;
 import com.ericsuwardi.newsapplication.view.iview.INewsListView;
 import com.joanzapata.iconify.widget.IconTextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by ericsuwardi on 11/30/17.
  */
@@ -29,12 +32,12 @@ public class NewsListActivity extends BaseActivity implements INewsListView, Vie
 
     NewsListPresenter presenter;
 
-    RecyclerView headlineRecyclerView;
-    RecyclerView otherNewsRecyclerView;
-    ProgressBar headlineProgressBar;
-    ProgressBar otherNewsProgressBar;
-    TextView headlineErrorTextView;
-    TextView otherNewsErrorTextView;
+    @BindView(R.id.headline_recyclerview)   RecyclerView headlineRecyclerView;
+    @BindView(R.id.other_recyclerview)      RecyclerView otherNewsRecyclerView;
+    @BindView(R.id.headline_progressbar)    ProgressBar headlineProgressBar;
+    @BindView(R.id.other_progressbar)       ProgressBar otherNewsProgressBar;
+    @BindView(R.id.headline_error_message)  TextView headlineErrorTextView;
+    @BindView(R.id.other_error_message)     TextView otherNewsErrorTextView;
     TextView actionBarTitle;
     IconTextView searchIcon;
 
@@ -56,6 +59,7 @@ public class NewsListActivity extends BaseActivity implements INewsListView, Vie
         source_name = getIntent().getExtras().getString("source_name","");
 
         setContentView(R.layout.activity_news_list);
+        ButterKnife.bind(this);
 
         if(getSupportActionBar()!= null){
 
@@ -75,13 +79,6 @@ public class NewsListActivity extends BaseActivity implements INewsListView, Vie
                     getString(R.string.news_list_activity_default_title) :
                     String.format(getString(R.string.news_list_activity_formatted_title), source_name));
         }
-
-        headlineRecyclerView = (RecyclerView) findViewById(R.id.headline_recyclerview);
-        otherNewsRecyclerView = (RecyclerView) findViewById(R.id.other_recyclerview);
-        headlineProgressBar = (ProgressBar) findViewById(R.id.headline_progressbar);
-        otherNewsProgressBar = (ProgressBar) findViewById(R.id.other_progressbar);
-        headlineErrorTextView = (TextView) findViewById(R.id.headline_error_message);
-        otherNewsErrorTextView = (TextView) findViewById(R.id.other_error_message);
 
         presenter = new NewsListPresenter(this);
         othersLlm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);

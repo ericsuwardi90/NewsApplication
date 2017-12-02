@@ -10,10 +10,13 @@ import com.ericsuwardi.newsapplication.R;
 import com.ericsuwardi.newsapplication.presenter.ArticleDetailPresenter;
 import com.ericsuwardi.newsapplication.view.iview.IArticleDetailView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ArticleDetailActivity extends BaseActivity implements IArticleDetailView{
 
-    WebView webView;
-    ProgressBar progressBar;
+    @BindView(R.id.web_view) WebView webView;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
     ArticleDetailPresenter presenter;
 
     @Override
@@ -21,6 +24,7 @@ public class ArticleDetailActivity extends BaseActivity implements IArticleDetai
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);
         setTitle(getString(R.string.article_detail_activity_title));
+        ButterKnife.bind(this);
 
         String url = getIntent().getExtras().getString("url", "");
 

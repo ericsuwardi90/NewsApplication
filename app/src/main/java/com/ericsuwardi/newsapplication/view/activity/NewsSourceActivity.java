@@ -1,7 +1,6 @@
 package com.ericsuwardi.newsapplication.view.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,16 +11,20 @@ import com.ericsuwardi.newsapplication.model.Source;
 import com.ericsuwardi.newsapplication.presenter.NewsSourcePresenter;
 import com.ericsuwardi.newsapplication.view.iview.INewsSourceView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class NewsSourceActivity extends BaseActivity implements INewsSourceView {
 
     NewsSourcePresenter presenter;
-    RecyclerView recyclerView;
+    @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_source);
         setTitle(R.string.news_source_activity_title);
+        ButterKnife.bind(this);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         presenter = new NewsSourcePresenter(this);

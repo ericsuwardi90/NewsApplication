@@ -48,7 +48,7 @@
     <string name="sort_by_spinner_array_option2">popularity</string>
     <string name="sort_by_spinner_array_option3">relevancy</string>
 
-    <string name="published_string">Published </string>
+    <string name="published_string">Published</string>
 
     <string name="action_bar_title">action_bar_title</string>
     <string name="api_sponsor_footer_message">Powered By newsapi.org</string>

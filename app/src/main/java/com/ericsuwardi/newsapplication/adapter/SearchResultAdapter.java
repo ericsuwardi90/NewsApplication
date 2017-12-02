@@ -102,11 +102,11 @@ public class SearchResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         void bindData(final Article article) {
 
             title.setText(article.getTitle());
-            timeStamp.setText(context.getString(R.string.published_string));
+            timeStamp.setText("Published ");
             timeStamp.append(
                 DateTimeHelper.writeFormattedDate(
-                        "yyyy-MM-dd",
-                        DateTimeHelper.getDate("dd-MM-yyyy'T'HH:mm:ss'Z'", article.getPublishedAt())
+                        "dd-MM-yyyy",
+                        DateTimeHelper.getDate("yyyy-MM-dd'T'HH:mm:ss'Z'", article.getPublishedAt())
                 )
             );
 
