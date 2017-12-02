@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.ericsuwardi.newsapplication.R;
 import com.ericsuwardi.newsapplication.adapter.SearchResultAdapter;
+import com.ericsuwardi.newsapplication.helper.ContextHelper;
 import com.ericsuwardi.newsapplication.helper.DateTimeHelper;
 import com.ericsuwardi.newsapplication.helper.StringHelper;
 import com.ericsuwardi.newsapplication.model.Article;
@@ -80,7 +81,7 @@ public class SearchActivity extends BaseActivity implements ISearchView, View.On
         toDateTextView = (TextView) findViewById(R.id.search_to_datepicker_text);
 
         llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        presenter = new SearchPresenter(this, this);
+        presenter = new SearchPresenter(this);
         adapter = new SearchResultAdapter(this, presenter, new Article[0]);
 
         recyclerView.setLayoutManager(llm);
@@ -104,7 +105,7 @@ public class SearchActivity extends BaseActivity implements ISearchView, View.On
                     if (visibleItemCount + firstVisibleItemPosition >= totalItemCount - threshold) {
                         // load for next page
                         adapter.setLoading(true);
-                        presenter.getOtherNewsApi(query, source_id, from, to, sortBy, language, page);
+                        presenter.getOtherNewsApi(query, source_id, from, to, sortBy, language, page, ContextHelper.getApiKey(SearchActivity.this));
                     }
                 }
             }
@@ -207,7 +208,7 @@ public class SearchActivity extends BaseActivity implements ISearchView, View.On
                 searchAdvanceButton.setEnabled(false);
                 searchAdvanceButton.setText(getString(R.string.search_advance_button_loading));
 
-                presenter.getOtherNewsApi(query, source_id, from, to, sortBy, language, page);
+                presenter.getOtherNewsApi(query, source_id, from, to, sortBy, language, page, ContextHelper.getApiKey(this));
                 break;
 
             case R.id.search_icon_submit:
@@ -220,7 +221,7 @@ public class SearchActivity extends BaseActivity implements ISearchView, View.On
                 searchIcon.setEnabled(false);
                 searchIcon.setText(getString(R.string.search_icon_loading));
 
-                presenter.getOtherNewsApi(query, source_id, from, to, sortBy, language, page);
+                presenter.getOtherNewsApi(query, source_id, from, to, sortBy, language, page, ContextHelper.getApiKey(this));
                 break;
 
             case R.id.toggle_button:
@@ -242,7 +243,7 @@ public class SearchActivity extends BaseActivity implements ISearchView, View.On
     @Override
     public void onRefresh() {
         page = 1;
-        presenter.getOtherNewsApi(query, source_id, from, to, sortBy, language, page);
+        presenter.getOtherNewsApi(query, source_id, from, to, sortBy, language, page, ContextHelper.getApiKey(this));
     }
 
     @Override
