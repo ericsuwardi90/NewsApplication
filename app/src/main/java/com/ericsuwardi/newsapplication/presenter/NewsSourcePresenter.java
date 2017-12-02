@@ -1,7 +1,5 @@
 package com.ericsuwardi.newsapplication.presenter;
 
-import android.content.Context;
-
 import com.ericsuwardi.newsapplication.event.SourceEvent;
 import com.ericsuwardi.newsapplication.model.Source;
 import com.ericsuwardi.newsapplication.view.iview.INewsSourceView;
@@ -14,31 +12,29 @@ import org.greenrobot.eventbus.ThreadMode;
  * Created by ericsuwardi on 11/30/17.
  */
 
-public class NewsSourcePresenter extends BasePresenter{
+public class NewsSourcePresenter extends BasePresenter {
 
     private INewsSourceView view;
-    private Context context;
 
-    public NewsSourcePresenter(INewsSourceView view, Context context){
+    public NewsSourcePresenter(INewsSourceView view) {
         this.view = view;
-        this.context = context;
     }
 
-    public void onStart(){
+    public void onStart() {
         EventBus.getDefault().register(this);
     }
 
-    public void onStop(){
+    public void onStop() {
         EventBus.getDefault().removeAllStickyEvents();
         EventBus.getDefault().unregister(this);
     }
 
-    public void onSourceClicked(Source source){
+    public void onSourceClicked(Source source) {
         view.onSourceItemSelected(source);
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void getSourceEvent(SourceEvent event){
+    public void getSourceEvent(SourceEvent event) {
         view.loadSources(event.getSources());
     }
 

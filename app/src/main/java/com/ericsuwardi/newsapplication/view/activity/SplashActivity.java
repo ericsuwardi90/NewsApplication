@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 
 import com.ericsuwardi.newsapplication.R;
 import com.ericsuwardi.newsapplication.event.SourceEvent;
+import com.ericsuwardi.newsapplication.helper.ContextHelper;
 import com.ericsuwardi.newsapplication.model.Source;
 import com.ericsuwardi.newsapplication.presenter.SplashPresenter;
 import com.ericsuwardi.newsapplication.view.iview.ISplashView;
@@ -26,8 +27,8 @@ public class SplashActivity extends AppCompatActivity implements ISplashView{
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
-        presenter = new SplashPresenter(this, this);
-        presenter.loadSourceApi();
+        presenter = new SplashPresenter(this);
+        presenter.loadSourceApi(ContextHelper.getApiKey(this));
     }
 
     @Override

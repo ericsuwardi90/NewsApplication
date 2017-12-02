@@ -21,7 +21,7 @@ public class ArticleDetailActivity extends BaseActivity implements IArticleDetai
         String url = getIntent().getExtras().getString("url", "");
 
         webView = (WebView) findViewById(R.id.web_view);
-        presenter = new ArticleDetailPresenter(this, this);
+        presenter = new ArticleDetailPresenter(this);
 
         presenter.loadWebsite(url);
 

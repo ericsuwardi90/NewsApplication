@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.ericsuwardi.newsapplication.R;
 import com.ericsuwardi.newsapplication.adapter.HeadlineAdapter;
 import com.ericsuwardi.newsapplication.adapter.OtherNewsAdapter;
+import com.ericsuwardi.newsapplication.helper.ContextHelper;
 import com.ericsuwardi.newsapplication.helper.StringHelper;
 import com.ericsuwardi.newsapplication.model.Article;
 import com.ericsuwardi.newsapplication.presenter.NewsListPresenter;
@@ -82,7 +83,7 @@ public class NewsListActivity extends BaseActivity implements INewsListView, Vie
         headlineErrorTextView = (TextView) findViewById(R.id.headline_error_message);
         otherNewsErrorTextView = (TextView) findViewById(R.id.other_error_message);
 
-        presenter = new NewsListPresenter(this, this);
+        presenter = new NewsListPresenter(this);
         othersLlm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         headlineAdapter = new HeadlineAdapter(this, presenter, new Article[0]);
@@ -111,14 +112,14 @@ public class NewsListActivity extends BaseActivity implements INewsListView, Vie
                     if (visibleItemCount + firstVisibleItemPosition >= totalItemCount - threshold) {
                         // load for next page
                         otherNewsAdapter.setLoading(true);
-                        presenter.onGetOtherNewsApi(source_id, page);
+                        presenter.onGetOtherNewsApi(source_id, page, ContextHelper.getApiKey(NewsListActivity.this));
                     }
                 }
             }
         });
 
-        presenter.onGetHeadlineNewsApi(source_id);
-        presenter.onGetOtherNewsApi(source_id, page);
+        presenter.onGetHeadlineNewsApi(source_id, ContextHelper.getApiKey(this));
+        presenter.onGetOtherNewsApi(source_id, page, ContextHelper.getApiKey(this));
     }
 
     @Override

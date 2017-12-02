@@ -24,7 +24,7 @@ public class NewsSourceActivity extends BaseActivity implements INewsSourceView 
         setTitle(R.string.news_source_activity_title);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        presenter = new NewsSourcePresenter(this, this);
+        presenter = new NewsSourcePresenter(this);
     }
 
     @Override

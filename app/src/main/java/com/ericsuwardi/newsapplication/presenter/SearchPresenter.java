@@ -1,8 +1,5 @@
 package com.ericsuwardi.newsapplication.presenter;
 
-import android.content.Context;
-
-import com.ericsuwardi.newsapplication.R;
 import com.ericsuwardi.newsapplication.model.Article;
 import com.ericsuwardi.newsapplication.model.ResponseBody;
 import com.ericsuwardi.newsapplication.network.ApiService;
@@ -19,11 +16,9 @@ import retrofit2.Response;
 public class SearchPresenter extends BasePresenter{
 
     private ISearchView view;
-    private Context context;
 
-    public SearchPresenter(ISearchView view, Context context){
+    public SearchPresenter(ISearchView view){
         this.view = view;
-        this.context = context;
     }
 
     public void openNewsPage(Article article){
@@ -36,7 +31,7 @@ public class SearchPresenter extends BasePresenter{
 
     public void getOtherNewsApi(String query, String sourceId,
                                   String from, String to,
-                                  String sortBy, String language, final int page){
+                                  String sortBy, String language, final int page, String apiKey){
 
         if(page <= 1 ){
             view.onLoadNewQuery();
@@ -44,7 +39,7 @@ public class SearchPresenter extends BasePresenter{
 
         ApiService.Factory.getInstance()
                 .getEverything(query, sourceId, from, to,
-                        sortBy, language, page, context.getString(R.string.news_api_key))
+                        sortBy, language, page, apiKey)
                 .enqueue(new Callback<ResponseBody>() {
 
                     @Override

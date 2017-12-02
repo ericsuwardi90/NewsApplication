@@ -1,8 +1,5 @@
 package com.ericsuwardi.newsapplication.presenter;
 
-import android.content.Context;
-
-import com.ericsuwardi.newsapplication.R;
 import com.ericsuwardi.newsapplication.model.Article;
 import com.ericsuwardi.newsapplication.model.ResponseBody;
 import com.ericsuwardi.newsapplication.network.ApiService;
@@ -19,11 +16,9 @@ import retrofit2.Response;
 public class NewsListPresenter extends BasePresenter{
 
     private INewsListView view;
-    private Context context;
 
-    public NewsListPresenter(INewsListView view, Context context){
+    public NewsListPresenter(INewsListView view){
         this.view = view;
-        this.context = context;
     }
 
     public void openNewsPage(Article article){
@@ -32,7 +27,7 @@ public class NewsListPresenter extends BasePresenter{
 
     public void openSearchPage(){view.openSearchActivity();}
 
-    public void onGetHeadlineNewsApi(String sourceId){
+    public void onGetHeadlineNewsApi(String sourceId, String apiKey){
         view.onLoadHeadlines();
 
         ApiService.Factory.getInstance()
@@ -42,7 +37,7 @@ public class NewsListPresenter extends BasePresenter{
                         "",
                         "",
                         "",
-                        context.getString(R.string.news_api_key))
+                        apiKey)
                 .enqueue(new Callback<ResponseBody>() {
 
             @Override
@@ -66,7 +61,7 @@ public class NewsListPresenter extends BasePresenter{
         });
     }
 
-    public void onGetOtherNewsApi(String sourceId, int page){
+    public void onGetOtherNewsApi(String sourceId, int page, String apiKey){
 
         if(page <= 1 ){
             view.onLoadFirstOtherNews();
@@ -81,7 +76,7 @@ public class NewsListPresenter extends BasePresenter{
                         "",
                         "",
                         page,
-                        context.getString(R.string.news_api_key))
+                        apiKey)
                 .enqueue(new Callback<ResponseBody>() {
 
                     @Override

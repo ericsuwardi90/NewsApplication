@@ -1,7 +1,5 @@
 package com.ericsuwardi.newsapplication.presenter;
 
-import android.content.Context;
-
 import com.ericsuwardi.newsapplication.view.iview.IArticleDetailView;
 
 /**
@@ -11,11 +9,9 @@ import com.ericsuwardi.newsapplication.view.iview.IArticleDetailView;
 public class ArticleDetailPresenter extends BasePresenter{
 
     private IArticleDetailView view;
-    private Context context;
 
-    public ArticleDetailPresenter(IArticleDetailView view, Context context){
+    public ArticleDetailPresenter(IArticleDetailView view){
         this.view = view;
-        this.context = context;
     }
 
     public void loadWebsite(String url){

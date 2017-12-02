@@ -18,7 +18,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -103,7 +102,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         void bindData(final Article article) {
 
             title.setText(article.getTitle());
-            timeStamp.setText("Published ");
+            timeStamp.setText(context.getString(R.string.published_string));
             timeStamp.append(
                 DateTimeHelper.writeFormattedDate(
                         "yyyy-MM-dd",

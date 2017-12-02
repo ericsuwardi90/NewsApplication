@@ -1,8 +1,5 @@
 package com.ericsuwardi.newsapplication.presenter;
 
-import android.content.Context;
-
-import com.ericsuwardi.newsapplication.R;
 import com.ericsuwardi.newsapplication.model.ResponseBody;
 import com.ericsuwardi.newsapplication.network.ApiService;
 import com.ericsuwardi.newsapplication.view.iview.ISplashView;
@@ -18,17 +15,15 @@ import retrofit2.Response;
 public class SplashPresenter extends BasePresenter{
 
     private ISplashView view;
-    private Context context;
 
-    public SplashPresenter(ISplashView view, Context context){
+    public SplashPresenter(ISplashView view){
         this.view = view;
-        this.context = context;
     }
 
-    public void loadSourceApi(){
+    public void loadSourceApi(String apiKey){
         view.onLoadSourceApi();
 
-        ApiService.Factory.getInstance().getSources(context.getString(R.string.news_api_key)).enqueue(new Callback<ResponseBody>() {
+        ApiService.Factory.getInstance().getSources(apiKey).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
