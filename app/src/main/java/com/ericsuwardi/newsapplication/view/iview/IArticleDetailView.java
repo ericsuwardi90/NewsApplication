@@ -6,5 +6,7 @@ package com.ericsuwardi.newsapplication.view.iview;
 
 public interface IArticleDetailView {
 
+    void onStartLoadWebsite();
     void loadWebsite(String url);
+    void onFinishedLoadWebsite();
 }

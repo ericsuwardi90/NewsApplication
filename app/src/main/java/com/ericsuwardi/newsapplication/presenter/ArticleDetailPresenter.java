@@ -17,4 +17,8 @@ public class ArticleDetailPresenter extends BasePresenter{
     public void loadWebsite(String url){
         view.loadWebsite(url);
     }
+
+    public void onLoadWebsite(){view.onStartLoadWebsite();}
+
+    public void onFinishedLoadWebsite(){view.onFinishedLoadWebsite();}
 }
